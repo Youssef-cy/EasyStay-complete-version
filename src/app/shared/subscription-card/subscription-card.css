@@ -1,0 +1,99 @@
+
+.subscription-card {
+    display: flex;
+    background-color: #f2f2f2;
+    width: 850px;
+    max-width: 95%;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+/* Image Section */
+.image-section {
+    flex: 1;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content Section */
+.content-section {
+    flex: 1.2;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.content-section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 30px;
+    line-height: 1.3;
+}
+
+.subscription-card{
+    margin-top: 100px;
+    justify-self: center;
+}
+
+/* Form Styling */
+.subscribe-form {
+
+    background-color: #fff;
+    display: flex;
+    padding: 6px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+
+.subscribe-form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #666;
+    background: transparent;
+}
+
+.subscribe-form button {
+    background-color: #008489; /* Teal color from your image */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.subscribe-form button:hover {
+    background-color: #006b6f;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .subscription-card {
+        flex-direction: column;
+    }
+    
+    .image-section {
+        height: 220px;
+    }
+    
+    .content-section {
+        padding: 30px 20px;
+    }
+
+    .content-section h2 {
+        font-size: 22px;
+    }
+}

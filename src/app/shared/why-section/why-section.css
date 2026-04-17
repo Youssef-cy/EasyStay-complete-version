@@ -1,0 +1,24 @@
+.why-section {
+    text-align: center;
+    margin: 20px;
+}
+
+.why-title {
+    padding-top: 20px;
+    font-size: 30px;
+    margin-bottom: 70px;
+}
+
+.why-cards {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.why-card p {
+    color: gray;
+}
+
+.why-image {
+    margin-bottom: 20px;
+}

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="login-box">
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Please Sign In To Your Account</p>
+
+    <form id="loginForm">
+      <div class="input-group">
+        <input id="email" class="input" type="email" placeholder="Email" required />
+        <input id="password" class="input" type="password" placeholder="Password" required />
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox" class="rememberMe" /> Remember me
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">Sign In</button>
+
+      <div class="divider"><span>or continue with</span></div>
+
+      <button type="button" class="apple-btn"> Sign in with Apple</button>
+      <button type="button" class="google-btn">G Sign in with Google</button>
+    </form>
+
+    <div class="donot">
+      <p>Don't have an account? <a (click)="goToSignup()">Sign Up</a></p>
+    </div>
+  </div>
+
+  <div class="image-side"></div>
+</div>
