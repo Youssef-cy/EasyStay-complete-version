@@ -1,4 +1,6 @@
 package com.ntgschool.easystay.Config;
+import com.ntgschool.easystay.Security.AuthenticationFilter;
+import com.ntgschool.easystay.Services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -21,31 +22,17 @@ public class SecurityConfig {
 
     private final CorsConfigurationSource corsConfigurationSource;
 
-//    @Bean
-//    public AuthenticationFilter authenticationFilter(AuthenticationService authenticationService){
-//        return new AuthenticationFilter(authenticationService);
-//    }
-//
-//
-//
-//    @Bean
-//    public ProductUserDetailsService productUserDetailsService(UserRepository userRepository){
-//        ProductUserDetailsService productUserDetailsService = new ProductUserDetailsService(userRepository);
-//        String email = "abdullah@gmail.com";
-//        userRepository.findByEmail(email).orElseGet(() -> {
-//            User user = User.builder()
-//                    .name("Abdullah")
-//                    .email(email)
-//                    .password(passwordEncoder().encode("Password@123"))
-//                    .build();
-//            return userRepository.save(user);
-//        });
-//
-//        return productUserDetailsService;
-//    }
+    @Bean
+    public AuthenticationFilter authenticationFilter(AuthenticationService authenticationService){
+        return new AuthenticationFilter(authenticationService);
+    }
+
+
+
+
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http){
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationFilter filter){
         http.authorizeHttpRequests(
                         auth ->
                                 auth
@@ -55,13 +42,13 @@ public class SecurityConfig {
                                         .requestMatchers(HttpMethod.GET,"/api/v1/facilities/**").permitAll()
                                         .requestMatchers(HttpMethod.POST,"/api/v1/facilities/**").permitAll()
                                         .requestMatchers(HttpMethod.GET,"/api/v1/rooms/**").permitAll()
-                                        .requestMatchers(HttpMethod.POST,"/api/v1/rooms/**").permitAll()
+//                                        .requestMatchers(HttpMethod.POST,"/api/v1/rooms/**").permitAll()
                                         .anyRequest().authenticated()
                 )
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-//                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

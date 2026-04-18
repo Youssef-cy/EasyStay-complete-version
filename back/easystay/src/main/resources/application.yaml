@@ -9,9 +9,13 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
-#      ddl-auto: update
-      ddl-auto: create-drop
+      ddl-auto: update
+#      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: yNcWGArQWpoh4lHACl/cbhnWdgCv9ML92Rq+SMnl3zc=
+  expiry: 8640000
