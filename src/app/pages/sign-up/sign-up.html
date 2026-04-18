@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="login-box">
+    <h1>Create Account</h1>
+    <p class="subtitle">Sign up to get started</p>
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+
+        <input type="text" class="input" placeholder="Full Name" formControlName="fullName" />
+        @if (myForm.get('fullName')?.touched) {
+          <div class="error">
+            @if (myForm.get('fullName')?.errors?.['required']) {
+              <small>Full name is required</small>
+            }
+            @if (myForm.get('fullName')?.errors?.['minlength']) {
+              <small>Minimum 3 characters</small>
+            }
+          </div>
+        }
+
+        <input type="email" class="input" placeholder="Email" formControlName="email" />
+        @if (myForm.get('email')?.touched) {
+          <div class="error">
+            @if (myForm.get('email')?.errors?.['required']) {
+              <small>Email is required</small>
+            }
+            @if (myForm.get('email')?.errors?.['email']) {
+              <small>Invalid email format</small>
+            }
+          </div>
+        }
+
+        <input type="password" class="input" placeholder="Password" formControlName="password" />
+        @if (myForm.get('password')?.touched) {
+          <div class="error">
+            @if (myForm.get('password')?.errors?.['required']) {
+              <small>Password is required</small>
+            }
+            @if (myForm.get('password')?.errors?.['minlength']) {
+              <small>Minimum 6 characters</small>
+            }
+          </div>
+        }
+
+        <select class="input" formControlName="location">
+          <option value="" disabled>Select Location</option>
+          <option>Cairo</option>
+          <option>Alexandria</option>
+          <option>Giza</option>
+          <option>Ismailia</option>
+          <option>Mansoura</option>
+        </select>
+        @if (myForm.get('location')?.touched) {
+          <div class="error">
+            @if (myForm.get('location')?.errors?.['required']) {
+              <small>Please select a location</small>
+            }
+          </div>
+        }
+
+      </div>
+
+      <button type="submit" class="login-btn">Sign Up</button>
+
+      <div class="divider"><span>or continue with</span></div>
+
+      <button type="button" class="apple-btn">Sign up with Apple</button>
+      <button type="button" class="google-btn">G Sign up with Google</button>
+    </form>
+
+    <div class="donot">
+      <p>Already have an account? <a (click)="goToLogin()">Sign In</a></p>
+    </div>
+  </div>
+
+  <div class="image-side signup-img"></div>
+</div>

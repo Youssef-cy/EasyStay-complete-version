@@ -116,6 +116,7 @@
 .donot a {
   color: #6c63ff;
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* RIGHT SIDE IMAGE */
@@ -123,4 +124,9 @@
   width: 50%;
   background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center;
   background-size: cover;
+}
+
+
+small{
+  color: red;
 }

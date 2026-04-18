@@ -3,11 +3,35 @@
     <h1>Welcome Back</h1>
     <p class="subtitle">Please Sign In To Your Account</p>
 
-    <form id="loginForm">
-      <div class="input-group">
-        <input id="email" class="input" type="email" placeholder="Email" required />
-        <input id="password" class="input" type="password" placeholder="Password" required />
-      </div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+     <div class="input-group">
+
+  <input class="input" type="email" placeholder="Email" formControlName="email" />
+  @if (myForm.get('email')?.touched) {
+    <div class="error">
+      @if (myForm.get('email')?.errors?.['required']) {
+        <small>Email is required</small>
+      }
+      @if (myForm.get('email')?.errors?.['email']) {
+        <small>Invalid email format</small>
+      }
+    </div>
+  }
+
+  <input class="input" type="password" placeholder="Password" formControlName="password" />
+  @if (myForm.get('password')?.touched) {
+    <div class="error">
+      @if (myForm.get('password')?.errors?.['required']) {
+        <small>Password is required</small>
+      }
+      @if (myForm.get('password')?.errors?.['minlength']) {
+        <small>Minimum 6 characters</small>
+      }
+    </div>
+  }
+
+</div>
 
       <div class="options">
         <label>
@@ -16,7 +40,9 @@
         <a href="#">Forgot password?</a>
       </div>
 
-      <button type="submit" class="login-btn">Sign In</button>
+      <button type="submit" class="login-btn" [disabled]="myForm.invalid">
+        Sign In
+      </button>
 
       <div class="divider"><span>or continue with</span></div>
 

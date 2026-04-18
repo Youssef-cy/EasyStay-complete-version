@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT SIDE */
+.login-box {
+  width: 50%;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-box h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* INPUTS */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.input:focus {
+  border-color: #6c63ff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
+}
+
+/* OPTIONS */
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-size: 13px;
+}
+
+.options a {
+  text-decoration: none;
+  color: #6c63ff;
+}
+
+/* BUTTON */
+.login-btn {
+    margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #6c63ff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #554ee0;
+}
+
+/* DIVIDER */
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* SOCIAL BUTTONS */
+.apple-btn,
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background: white;
+  transition: 0.3s;
+}
+
+.apple-btn:hover,
+.google-btn:hover {
+  background: #f5f5f5;
+}
+
+/* SIGNUP */
+.donot {
+    text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.donot a {
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+/* RIGHT SIDE IMAGE */
+.image-side {
+  width: 50%;
+  background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center;
+  background-size: cover;
+}
+
+/* نفس شكل inputs يخدم select */
+select.input {
+  appearance: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* صورة مختلفة للـ signup */
+.signup-img {
+  background: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d') no-repeat center;
+  background-size: cover;
+}
+
+small{
+  color: red;
+}
