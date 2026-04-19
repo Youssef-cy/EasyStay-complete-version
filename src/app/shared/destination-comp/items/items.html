@@ -1,0 +1,24 @@
+<div *ngIf="isLoading">
+  Loading hotels...
+</div>
+
+<div *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="!isLoading && !errorMessage">
+
+  <div *ngIf="hotels.length === 0">
+    No hotels found.
+  </div>
+
+  <div *ngFor="let hotel of hotels">
+    <div class="card-body">
+      <h3>{{ hotel.name }}</h3>
+
+      <p>City: {{ hotel.location?.city }}</p>
+      <p>Country: {{ hotel.location?.country }}</p>
+    </div>
+  </div>
+
+</div>

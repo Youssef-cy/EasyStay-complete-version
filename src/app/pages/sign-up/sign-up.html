@@ -7,65 +7,38 @@
       <div class="input-group">
 
         <input type="text" class="input" placeholder="Full Name" formControlName="fullName" />
-        @if (myForm.get('fullName')?.touched) {
-          <div class="error">
-            @if (myForm.get('fullName')?.errors?.['required']) {
-              <small>Full name is required</small>
-            }
-            @if (myForm.get('fullName')?.errors?.['minlength']) {
-              <small>Minimum 3 characters</small>
-            }
-          </div>
-        }
 
         <input type="email" class="input" placeholder="Email" formControlName="email" />
-        @if (myForm.get('email')?.touched) {
-          <div class="error">
-            @if (myForm.get('email')?.errors?.['required']) {
-              <small>Email is required</small>
-            }
-            @if (myForm.get('email')?.errors?.['email']) {
-              <small>Invalid email format</small>
-            }
-          </div>
-        }
+
+        <input type="tel" class="input" placeholder="Phone Number" formControlName="phoneNumber" />
 
         <input type="password" class="input" placeholder="Password" formControlName="password" />
-        @if (myForm.get('password')?.touched) {
-          <div class="error">
-            @if (myForm.get('password')?.errors?.['required']) {
-              <small>Password is required</small>
-            }
-            @if (myForm.get('password')?.errors?.['minlength']) {
-              <small>Minimum 6 characters</small>
-            }
-          </div>
-        }
 
-        <select class="input" formControlName="location">
-          <option value="" disabled>Select Location</option>
-          <option>Cairo</option>
-          <option>Alexandria</option>
-          <option>Giza</option>
-          <option>Ismailia</option>
-          <option>Mansoura</option>
-        </select>
-        @if (myForm.get('location')?.touched) {
-          <div class="error">
-            @if (myForm.get('location')?.errors?.['required']) {
-              <small>Please select a location</small>
-            }
-          </div>
-        }
+        <input type="password" class="input" placeholder="Confirm Password" formControlName="confirmPassword" />
+
+        <!-- LOCATION -->
+        <div formGroupName="location">
+
+          <input type="text" class="input" placeholder="City" formControlName="city" />
+
+          <input type="text" class="input" placeholder="Country" formControlName="country" />
+
+          <input type="number" class="input" placeholder="Latitude" formControlName="latitude" />
+
+          <input type="number" class="input" placeholder="Longitude" formControlName="longitude" />
+
+        </div>
 
       </div>
 
-      <button type="submit" class="login-btn">Sign Up</button>
+      <button type="submit" class="login-btn" [disabled]="isLoading">
+        {{ isLoading ? 'Creating account...' : 'Sign Up' }}
+      </button>
 
       <div class="divider"><span>or continue with</span></div>
 
       <button type="button" class="apple-btn">Sign up with Apple</button>
-      <button type="button" class="google-btn">G Sign up with Google</button>
+      <button type="button" class="google-btn">Sign up with Google</button>
     </form>
 
     <div class="donot">

@@ -1,0 +1,35 @@
+.hero {
+  justify-self: center;
+  border-radius: 20px;
+  height: 60vh;
+  margin-top: 110px;
+  background-size: cover;
+  transition: 0.3s ease;
+  width: 1200px;
+}
+
+.overlay {
+  border-radius: 20px;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.overlay h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.overlay input {
+  width: 450px;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+input{
+    border: none;
+}
