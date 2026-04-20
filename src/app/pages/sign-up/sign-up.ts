@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -27,7 +27,7 @@ const passwordMatchValidator: ValidatorFn = (group: AbstractControl): Validation
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
 })
-export class SignUp {
+export class SignUp implements OnInit {
 
   myForm: FormGroup;
   isLoading = false;
@@ -58,6 +58,50 @@ export class SignUp {
     );
   }
 
+  ngOnInit() {
+    this.getLocation();
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.myForm.patchValue({
+            location: {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            }
+          });
+
+          this.http.get<any>(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
+            .subscribe({
+              next: (res) => {
+                if (res && res.address) {
+                  this.myForm.patchValue({
+                    location: {
+                      city: res.address.city || res.address.town || res.address.village || '',
+                      country: res.address.country || 'Egypt'
+                    }
+                  });
+                }
+              },
+              error: (err) => console.error("Geocoding error: ", err)
+            });
+        },
+        (error) => {
+          console.error("Error getting location: ", error);
+          this.myForm.patchValue({
+            location: { latitude: 0, longitude: 0 }
+          });
+        }
+      );
+    } else {
+        this.myForm.patchValue({
+          location: { latitude: 0, longitude: 0 }
+        });
+    }
+  }
+
   get passwordMismatch(): boolean {
     return (
       !!this.myForm.errors?.['passwordMismatch'] &&
@@ -66,10 +110,13 @@ export class SignUp {
   }
 
   onSubmit(): void {
+    
     if (this.myForm.invalid) {
       this.myForm.markAllAsTouched();
       return;
     }
+    console.log("dd");
+    
 
     this.isLoading = true;
 
@@ -85,6 +132,8 @@ export class SignUp {
 
     this.authService.signup(request).subscribe({
       next: (res) => {
+        console.log(res);
+        
         localStorage.setItem('token', res.token);
 
         Swal.fire({

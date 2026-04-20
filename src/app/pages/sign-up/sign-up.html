@@ -7,26 +7,60 @@
       <div class="input-group">
 
         <input type="text" class="input" placeholder="Full Name" formControlName="fullName" />
+        @if (myForm.get('fullName')?.invalid && myForm.get('fullName')?.touched) {
+          <small style="color: red; font-size: 0.85rem; margin-top: -10px; margin-bottom: 10px; display: block; text-align: left; margin-left: 5px;">
+            @if (myForm.get('fullName')?.errors?.['required']) { Full Name is required. }
+            @if (myForm.get('fullName')?.errors?.['minlength']) { Full Name must be at least 3 characters long. }
+          </small>
+        }
 
         <input type="email" class="input" placeholder="Email" formControlName="email" />
+        @if (myForm.get('email')?.invalid && myForm.get('email')?.touched) {
+          <small style="color: red; font-size: 0.85rem; margin-top: -10px; margin-bottom: 10px; display: block; text-align: left; margin-left: 5px;">
+            @if (myForm.get('email')?.errors?.['required']) { Email is required. }
+            @if (myForm.get('email')?.errors?.['email']) { Please enter a valid email address. }
+          </small>
+        }
 
         <input type="tel" class="input" placeholder="Phone Number" formControlName="phoneNumber" />
+        @if (myForm.get('phoneNumber')?.invalid && myForm.get('phoneNumber')?.touched) {
+          <small style="color: red; font-size: 0.85rem; margin-top: -10px; margin-bottom: 10px; display: block; text-align: left; margin-left: 5px;">
+            @if (myForm.get('phoneNumber')?.errors?.['required']) { Phone Number is required. }
+            @if (myForm.get('phoneNumber')?.errors?.['pattern']) { Phone Number must be 10-15 digits. }
+          </small>
+        }
 
         <input type="password" class="input" placeholder="Password" formControlName="password" />
+        @if (myForm.get('password')?.invalid && myForm.get('password')?.touched) {
+          <small style="color: red; font-size: 0.85rem; margin-top: -10px; margin-bottom: 10px; display: block; text-align: left; margin-left: 5px;">
+            @if (myForm.get('password')?.errors?.['required']) { Password is required. }
+            @if (myForm.get('password')?.errors?.['minlength']) { Password must be at least 6 characters long. }
+          </small>
+        }
 
         <input type="password" class="input" placeholder="Confirm Password" formControlName="confirmPassword" />
+        @if (myForm.get('confirmPassword')?.touched || passwordMismatch) {
+          <small style="color: red; font-size: 0.85rem; margin-top: -10px; margin-bottom: 10px; display: block; text-align: left; margin-left: 5px;">
+            @if (myForm.get('confirmPassword')?.errors?.['required']) { Please confirm your password. }
+            @if (passwordMismatch && !myForm.get('confirmPassword')?.errors?.['required']) { Passwords do not match. }
+          </small>
+        }
 
         <!-- LOCATION -->
-        <div formGroupName="location">
+        <div style="display: flex; gap: 20px;" formGroupName="location">
+          <div style="flex: 1;">
+            <input style="width: 100%;" type="text" class="input" placeholder="City" formControlName="city" />
+            @if (myForm.get('location.city')?.invalid && myForm.get('location.city')?.touched) {
+              <small style="color: red; font-size: 0.85rem; margin-top: 5px; display: block; text-align: left; margin-left: 5px;">City is required.</small>
+            }
+          </div>
 
-          <input type="text" class="input" placeholder="City" formControlName="city" />
-
-          <input type="text" class="input" placeholder="Country" formControlName="country" />
-
-          <input type="number" class="input" placeholder="Latitude" formControlName="latitude" />
-
-          <input type="number" class="input" placeholder="Longitude" formControlName="longitude" />
-
+          <div style="flex: 1;">
+            <input style="width: 100%;" type="text" class="input" placeholder="Country" formControlName="country" />
+            @if (myForm.get('location.country')?.invalid && myForm.get('location.country')?.touched) {
+              <small style="color: red; font-size: 0.85rem; margin-top: 5px; display: block; text-align: left; margin-left: 5px;">Country is required.</small>
+            }
+          </div>
         </div>
 
       </div>

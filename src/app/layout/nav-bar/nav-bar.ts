@@ -9,4 +9,7 @@ import { RouterLink } from "@angular/router";
 })
 export class NavBar {
 
+  isLogged():boolean{
+    return localStorage.getItem("token") == null
+  }
 }

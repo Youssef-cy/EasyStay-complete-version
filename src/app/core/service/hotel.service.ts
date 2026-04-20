@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Location } from './auth.service';
 
 export interface HotelRequest {
   name: string;
@@ -12,12 +13,23 @@ export interface HotelRequest {
 export interface HotelResponse {
   id: number;
   name: string;
-    location: {
-    city: string;
-    country: string;
-  };
+  location: Location  
   description?: string;
+  rooms: Room[]
   starRating?: number;
+}
+
+export interface Room{
+  id: number;
+  capacity: number;
+  facilities: Facility[]
+  price:number
+
+}
+
+export interface Facility{
+  id: number;
+  name: string
 }
 
 @Injectable({

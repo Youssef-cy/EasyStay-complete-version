@@ -1,12 +1,18 @@
 <nav>
         <div class="logo">EASYSTAY</div>
-    <div class="right">
-            <ul>
-       <li><a routerLink="">Home</a></li>
-       <li><a routerLink="destinations">Destinations</a></li>
-       <li><a routerLink="Reviews">Reviews</a></li>
-       <li><a routerLink="contact">Contact</a></li>
-    </ul>
-    <button class="nav_btn" routerLink="login">Log in</button>
-    </div>
-    </nav>
+        <div class="right">
+                <ul>
+                        <li><a routerLink="">Home</a></li>
+                        <li><a routerLink="destinations">Destinations</a></li>
+                        <li><a routerLink="Reviews">Reviews</a></li>
+                        <li><a routerLink="contact">Contact</a></li>
+                        @if (!isLogged()) {
+                                <li><a routerLink="bookings">Bookings</a></li>
+                        }
+                </ul>
+                @if (isLogged()) {
+
+                <button class="nav_btn" routerLink="login">Log in</button>
+                }
+        </div>
+</nav>

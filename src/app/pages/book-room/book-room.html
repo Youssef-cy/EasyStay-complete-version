@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="booking-box">
+    <h1>Book Room #{{ roomId }}</h1>
+    <p class="subtitle">Select your check-in and check-out dates</p>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="checkIn">Check-In Date</label>
+        <input type="datetime-local" id="checkIn" class="input" formControlName="checkInDate" />
+        @if (bookingForm.get('checkInDate')?.invalid && bookingForm.get('checkInDate')?.touched) {
+          <small class="error-text">Check-in date is required.</small>
+        }
+
+        <label for="checkOut">Check-Out Date</label>
+        <input type="datetime-local" id="checkOut" class="input" formControlName="checkOutDate" />
+        @if (bookingForm.get('checkOutDate')?.invalid && bookingForm.get('checkOutDate')?.touched) {
+          <small class="error-text">Check-out date is required.</small>
+        }
+
+        @if (invalidDateRange) {
+          <small class="error-text">Check-out date must be after Check-in date.</small>
+        }
+      </div>
+
+      <button type="submit" class="book-btn" [disabled]="isLoading">
+        {{ isLoading ? 'Booking...' : 'Confirm Booking' }}
+      </button>
+
+      <div class="cancel">
+        <a style="cursor: pointer" onclick="history.back()">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

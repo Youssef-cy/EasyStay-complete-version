@@ -9,6 +9,7 @@
 
 /* Results Grid */
 #results {
+  margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: auto;
@@ -107,4 +108,56 @@ gap: 80px  ;
 .price small {
   font-size: 13px;
   color: gray;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.375rem;
+}
+
+.text-bg-primary {
+  color: #fff;
+  background-color: #0d6efd;
+}
+
+.text-bg-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+.text-bg-success {
+  color: #fff;
+  background-color: #198754;
+}
+
+.text-bg-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+
+.text-bg-warning {
+  color: #000;
+  background-color: #ffc107;
+}
+
+.text-bg-info {
+  color: #000;
+  background-color: #0dcaf0;
+}
+
+.text-bg-light {
+  color: #000;
+  background-color: #f8f9fa;
+}
+
+.text-bg-dark {
+  color: #fff;
+  background-color: #212529;
 }

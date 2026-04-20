@@ -15,7 +15,7 @@ export interface RoomResponse {
   hotelId: number;
   roomNumber: string;
   type?: string;
-  pricePerNight: number;
+  price: number;
   capacity?: number;
 }
 

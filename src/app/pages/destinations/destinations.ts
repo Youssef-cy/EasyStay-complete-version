@@ -10,5 +10,5 @@ import { Items } from '../../shared/destination-comp/items/items';
   styleUrl: './destinations.css',
 })
 export class Destinations  {
-
+  searchTerm: string = '';
 }

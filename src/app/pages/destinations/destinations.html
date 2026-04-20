@@ -1,6 +1,6 @@
 <div class="filter">
-    <app-filter></app-filter>
+    <app-filter (searchChange)="searchTerm = $event"></app-filter>
 </div>
 
 <app-features></app-features>
-<app-items></app-items>
+<app-items [searchTerm]="searchTerm"></app-items>

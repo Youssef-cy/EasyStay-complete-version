@@ -12,7 +12,14 @@ export interface CreateAccountRequest {
   password: string;
   name: string;
   phoneNumber: string;
-  location: string;
+  location: Location;
+}
+
+export interface Location{
+  latitude: number,
+  longitude: number,
+  city: string,
+  country: string
 }
 
 export interface AuthenticationResponse {

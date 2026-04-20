@@ -1,0 +1,37 @@
+<div class="bookings-container">
+  <h1>My Bookings</h1>
+
+  @if (isLoading()) {
+    <div class="loading">Loading your bookings...</div>
+  }
+
+  @if (errorMessage()) {
+    <div class="error">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  @if (!isLoading() && reservations().length > 0) {
+    <div class="bookings-grid">
+      @for (res of reservations(); track res.id) {
+        <div class="booking-card">
+          <div class="booking-header">
+            <h3>{{ res.hotel?.name || 'Unknown Hotel' }}</h3>
+            <span class="badge text-bg-info">Booking #{{ res.id }}</span>
+          </div>
+          
+          <div class="booking-details">
+            <p><strong>Room:</strong> {{ res.room?.id }} (Capacity: {{ res.room?.capacity }})</p>
+            <p><strong>Check-In:</strong> {{ res.checkIn | date:'medium' }}</p>
+            <p><strong>Check-Out:</strong> {{ res.checkOut | date:'medium' }}</p>
+            <p><strong>Price:</strong> ${{ res.room?.price }} / night</p>
+          </div>
+          
+          <button class="delete-btn" (click)="deleteBooking(res.id)">Delete Reservation</button>
+        </div>
+      }
+    </div>
+  } @else if (!isLoading() && reservations().length === 0) {
+    <p class="no-bookings">You have no reservations currently.</p>
+  }
+</div>

@@ -1,24 +1,33 @@
-<div *ngIf="isLoading">
-  Loading hotels...
-</div>
+@if (isLoading) {
+<div>Loading hotels...</div>
+}
 
-<div *ngIf="errorMessage">
+@if (errorMessage) {
+<div>
   {{ errorMessage }}
 </div>
+}
 
-<div *ngIf="!isLoading && !errorMessage">
+@if (filteredHotels.length === 0) {
+<div style="width: 100%; height: 70vh; display: flex; justify-content: center; align-items: center;font-size: 80px;font-weight: bolder;">No hotels found.
+</div>
+}
+@if (!isLoading || errorMessage === '') {
+<div id="results">
 
-  <div *ngIf="hotels.length === 0">
-    No hotels found.
-  </div>
-
-  <div *ngFor="let hotel of hotels">
+  <div class="card" *ngFor="let hotel of filteredHotels">
+    <img src="/images/image 7.png" alt="" />
     <div class="card-body">
       <h3>{{ hotel.name }}</h3>
 
-      <p>City: {{ hotel.location?.city }}</p>
-      <p>Country: {{ hotel.location?.country }}</p>
+      <div style="display: flex; gap: 10px">
+        <p class="badge text-bg-primary">City: {{ hotel.location.city }}</p>
+        <p class="badge text-bg-success">Country: {{ hotel.location.country }}</p>
+
+        <p class="badge text-bg-success">Price: {{ getAvgPrice(hotel.rooms) }}</p>
+      </div>
+      <button class="btn" style="margin-top: 15px; width: 100%; padding: 10px; background-color: #0b2239; color: white; border: none; border-radius: 8px; cursor: pointer" [routerLink]="['/hotel', hotel.id]">View Details</button>
     </div>
   </div>
-
 </div>
+}

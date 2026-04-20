@@ -1,0 +1,63 @@
+<div class="details-container">
+  @if (isLoading()) {
+    <div class="loading">Loading hotel information...</div>
+  }
+
+  @if (errorMessage()) {
+    <div class="error">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  @if (!isLoading() && hotel()) {
+    <div class="hotel-header">
+      <div class="image-wrapper">
+         <img src="/images/image 7.png" alt="Hotel image" class="main-image"/>
+      </div>
+      <div class="header-info">
+        <h1>{{ hotel()!.name }}</h1>
+        <div class="tags">
+          <span class="badge text-bg-primary">City: {{ hotel()!.location?.city }}</span>
+          <span class="badge text-bg-success">Country: {{ hotel()!.location?.country }}</span>
+          @if (hotel()!.starRating) {
+            <span class="badge text-bg-warning">Rating: {{ hotel()!.starRating }} / 5</span>
+          }
+        </div>
+        <p class="description">{{ hotel()!.description || 'A beautiful place for an amazing stay. Enjoy the views, comfortable rooms, and excellent amenities.' }}</p>
+      </div>
+    </div>
+
+    <div class="rooms-section">
+      <h2>Available Rooms</h2>
+      @if (hotel()!.rooms && hotel()!.rooms.length > 0) {
+        <div class="rooms-grid">
+          @for (room of hotel()!.rooms; track room.id) {
+            <div class="room-card">
+              <div class="room-header">
+                <h3>Room #{{ room.id }}</h3>
+                <span class="price">${{ room.price }} / night</span>
+              </div>
+              <p class="capacity">Capacity: {{ room.capacity }} guests</p>
+              
+              <h4>Facilities</h4>
+              <ul class="facilities-list">
+                @for (facility of room.facilities; track facility.id) {
+                  <li>{{ facility.name }}</li>
+                }
+                @if (room.facilities.length === 0) {
+                  <li>Basic amenities included</li>
+                }
+              </ul>
+              
+              <button class="book-btn" [routerLink]="['/book-room', room.id]" [queryParams]="{ hotelId: hotel()!.id }">Book Now</button>
+            </div>
+          }
+        </div>
+      } @else {
+        <p>No rooms available at the moment.</p>
+      }
+    </div>
+    
+    <a routerLink="/destinations" class="back-link">← Back to Destinations</a>
+  }
+</div>
